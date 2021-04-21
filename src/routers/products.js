@@ -27,7 +27,7 @@ router.get('/products', async(req,res) => {
 
 //FindByName
 router.get('/products/search', async(req, res) => {
-    var products = await Product.findOne({ name: req.body.name})
+    var products = await Product.find({ name: req.body.name})
     try{
         if(!products){
         return res.status(404).send("Product not found!")
