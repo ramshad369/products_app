@@ -7,10 +7,10 @@ router.post('/products', async(req,res) => {
     const product = new Product({...req.body})
     try{
         await product.save()
-        res.status(201).send(product)
+        res.status(201).send({message:"success", data:products})
     }
     catch(e){
-        res.status(400).send(e)
+        res.status(400).send({error:e})
     }
 })
 
@@ -18,10 +18,10 @@ router.post('/products', async(req,res) => {
 router.get('/products', async(req,res) => {
    try{
     var products = await Product.find({})
-    res.send(products)
+    res.send({message:"success", data:products})
    }
     catch(e){
-        res.status(500).send(e)
+        res.status(500).send({error:e})
     }
 })
 
@@ -30,12 +30,12 @@ router.get('/products/search', async(req, res) => {
     var products = await Product.find({ name: req.body.name})
     try{
         if(!products){
-        return res.status(404).send("Product not found!")
+        return res.status(404).send({error:"Product not found!"})
     }
-    res.send(products)
+    res.send({message:"success", data:products})
     }
     catch(e){
-        res.status(500).end(e)
+        res.status(500).end({error:e})
     }
 })
 
@@ -50,10 +50,10 @@ router.patch('/products/:id', async(req,res)=>{
                 if (req.body.description)
                     cont.description = req.body.description
         var products = await Product.findByIdAndUpdate(req.params.id, { $set: cont},{new: true})
-        res.send(products)
+        res.send({message:"success", data:products})
     }
     catch(e){
-        res.status(400).send(e)
+        res.status(400).send({error:e})
     }
 })
 
@@ -62,12 +62,12 @@ router.delete('/products/:id', async(req, res)=>{
     try{
         var products = await Product.findOneAndDelete({_id: req.params.id})
         if(!products){
-            return res.status(404).send("product not found!")
+            return res.status(404).send({error: "product not found!"})
         }
-        res.send(products)
+        res.send({message:"success", data:products})
     }
     catch(e){
-        res.status(500).send(e)
+        res.status(500).send({error:e})
     }
 })
 
