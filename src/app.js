@@ -4,20 +4,20 @@ require('./db/mongo1')
 productRouter = require('./routers/products')
 
 const app = express()
-const corsOpts = {
-    origin: '*',
+// const corsOpts = {
+//     origin: '*',
   
-    methods: [
-      'GET',
-      'POST',
-    ],
+//     methods: [
+//       'GET',
+//       'POST',
+//     ],
   
-    allowedHeaders: [
-      'Content-Type',
-    ],
-  };
+//     allowedHeaders: [
+//       'Content-Type',
+//     ],
+//   };
   
-app.use(cors(corsOpts));
+// app.use(cors(corsOpts));
 app.use(express.json())
 app.use(productRouter)
 
