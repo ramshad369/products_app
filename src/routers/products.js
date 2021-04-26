@@ -2,6 +2,9 @@ var express = require('express')
 var router = new express.Router()
 var Product = require('../models/product')
 
+router.get('/helth', (req, res)=>{
+    res.send({message:"succees"})
+})
 //Create
 router.post('/products', async(req,res) => {
     const product = new Product({...req.body})
