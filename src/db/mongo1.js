@@ -1,7 +1,8 @@
 var mongoose = require('mongoose')
 
 mongoose.connect('mongodb+srv://*********@********.mongodb.net/product-app-api?retryWrites=true',
-{useNewUrlParser: true});
+{useNewUrlParser: true,useCreateIndex : true,useFindAndModify: false,
+        useUnifiedTopology: true},);
          mongoose.connection.once('open', function(){
          console.log('Conection has been made!');
              }).on('error', function(error){
