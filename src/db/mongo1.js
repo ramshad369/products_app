@@ -7,10 +7,11 @@ var mongoose = require('mongoose')
 //          console.log('Conection has been made!');
 //              }).on('error', function(error){
 //           console.log('Error is: ', error);
-        //    });
+//            });
 mongoose.connect(process.env.MONGODB_URL,
 { useNewUrlParser : true, useCreateIndex : true,useFindAndModify: false,
     useUnifiedTopology: true},()=>
 {
     console.log("mongo connected");
 })
+

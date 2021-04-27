@@ -8,10 +8,10 @@ router.get('/helth', (req, res)=>{
 
 //Create
 router.post('/products', async(req,res) => {
-    const product = new Product({...req.body})
     try{
+        const product = new Product({...req.body})
         await product.save()
-        res.status(201).send({message:"success", data:products})
+        res.status(201).send({message:"success", data:product})
     }
     catch(e){
         res.status(400).send({error:e})
@@ -30,7 +30,7 @@ router.get('/products', async(req,res) => {
 })
 
 //FindByName
-router.get('/products/search', async(req, res) => {
+router.post('/products/search', async(req, res) => {
     var products = await Product.find({ name: req.body.name})
     try{
         if(!products){
